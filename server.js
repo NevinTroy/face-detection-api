@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/',(req,res)=>{
-    res.send(postgres.users);
+    res.send('Our app is working!!');
 });
 
 app.post('/signin',(req,res)=>{siginin.handleSignIn(req,res,postgres,bcrypt)});
@@ -37,5 +37,8 @@ app.get('/profile/:id',(req,res)=>{profile.handleProfile(req,res,postgres)});
 
 app.put('/image',(req,res)=>{image.handleImage(req,res,postgres)});
 
-
-app.listen(process.env.PORT || 3000);
+const host='0.0.0.0';
+const port=process.env.PORT || 3000;
+app.listen(port,host,()=>{
+    console.log('Server started');
+});
